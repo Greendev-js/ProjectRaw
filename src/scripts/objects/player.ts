@@ -1,4 +1,4 @@
-export class Player extends Phaser.Physics.Arcade.Sprite {
+export default class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
     super(scene, x, y, 'player')
     scene.add.existing(this)
@@ -8,16 +8,19 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.setDrag(350, 100)
     this.setScale(0.3)
   }
+
+  public playerMovement(cursors: Phaser.Types.Input.Keyboard.CursorKeys, player: Player) {
+    if (cursors.right.isDown) {
+      player.flipX = false
+      player.setVelocityX(200)
+    }
+    if (cursors.left.isDown) {
+      player.flipX = true
+      player.setVelocityX(-200)
+    }
+    if (cursors.space.isDown) {
+      player.setVelocityY(-200)
+    }
+  }
 }
 
-export function playerMovement(cursors: Phaser.Types.Input.Keyboard.CursorKeys, player: Player) {
-  if (cursors.right.isDown) {
-    player.setVelocityX(200)
-  }
-  if (cursors.left.isDown) {
-    player.setVelocityX(-200)
-  }
-  if (cursors.space.isDown) {
-    player.setVelocityY(-200)
-  }
-}

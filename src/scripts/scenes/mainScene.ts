@@ -1,9 +1,14 @@
-import {Player, playerMovement} from '../objects/player'
+import Player from '../objects/player'
 import FpsText from '../objects/fpsText'
+import Material from '../objects/material'
+import Score from '../objects/score'
 
 export default class MainScene extends Phaser.Scene {
   fpsText: FpsText
+  scoreUpdate: integer
+  score: Score
   player: Player
+  gold: Material
   cursors: Phaser.Types.Input.Keyboard.CursorKeys
 
   constructor() {
@@ -12,7 +17,9 @@ export default class MainScene extends Phaser.Scene {
 
   create() {
     this.fpsText = new FpsText(this)
+    this.score = new Score(this)
     this.player = new Player(this, this.cameras.main.width / 2, this.cameras.main.height)
+    this.gold = new Material(this, this.cameras.main.width, 0)
 
     // display the Phaser.VERSION
     this.add
@@ -22,13 +29,20 @@ export default class MainScene extends Phaser.Scene {
       })
       .setOrigin(1, 0)
     
-    // create cursor keys
+    // inialise
     this.cursors = this.input.keyboard.createCursorKeys();
+    this.score.updateScore(0)
   }
 
   update() {
     this.fpsText.update()
-    
-    playerMovement(this.cursors, this.player)
+
+    this.player.playerMovement(this.cursors, this.player)
+    this.gold.checkCollect(this, this.player, this.gold)
+
+    if (!this.gold.active) {
+      this.score.updateScore(10)
+      this.gold = new Material(this, Math.random() * this.cameras.main.width, 0)
+    }
   }
 }
