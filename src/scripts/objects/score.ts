@@ -1,8 +1,8 @@
 export default class Score extends Phaser.GameObjects.Text {
     score: integer
 
-    constructor(scene) {
-        super(scene, 10, 40, '', { color: 'black', fontSize: '28px' })
+    constructor(scene: Phaser.Scene, x: number, y: number) {
+        super(scene, x, y, '', { color: 'black', fontSize: '28px' })
         scene.add.existing(this)
         this.setOrigin(0)
         this.score = 0
