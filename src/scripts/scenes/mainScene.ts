@@ -27,21 +27,13 @@ export default class MainScene extends Phaser.Scene {
     this.player = new Player(this, this.cameras.main.width / 2, this.cameras.main.height)
     this.gold = new Material(this, this.cameras.main.width, 0)
 
-    this.cameras.main.backgroundColor.setTo(0,200,50, 150)
-
-    // display the Phaser.VERSION
-    this.add
-      .text(this.cameras.main.width - 15, 15, `Phaser v${Phaser.VERSION}`, {
-        color: '#000000',
-        fontSize: '24px'
-      })
-      .setOrigin(1, 0)
+    this.cameras.main.backgroundColor.setTo(0,200,50,150)
     
     // inialise
     this.cursors = this.input.keyboard.createCursorKeys();
     this.score.updateScore(0)
     this.gold.onCollision(this, this.player, this.gold)
-    this.shop.onCollision(this, this.player, this.shop)
+    this.shop.onCollision(this.game, this, this.player, this.shop)
   }
 
   update() {
