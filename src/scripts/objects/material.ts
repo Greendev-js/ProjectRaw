@@ -11,7 +11,7 @@ export default class Material extends Phaser.Physics.Arcade.Sprite {
         this.setScale(0.8)
     }
     
-    public checkCollect(scene: Phaser.Scene, player: Player, material: Material) {
+    public onCollision(scene: Phaser.Scene, player: Player, material: Material) {
         scene.physics.add.collider(player, material, function () {
             material.destroy()
         });
