@@ -10,6 +10,6 @@ export default class Score extends Phaser.GameObjects.Text {
 
     public updateScore(scoreIn: integer) {
         this.score += scoreIn
-        this.setText(`score: ${this.score}`)
+        this.setText(`gold: ${this.score}`)
     }
 }

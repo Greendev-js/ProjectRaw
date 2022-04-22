@@ -2,6 +2,7 @@ import * as Phaser from 'phaser'
 import MainScene from './scenes/mainScene'
 import PreloadScene from './scenes/preloadScene'
 import 'phaser/plugins/spine/dist/SpinePlugin'
+import ShopScene from './scenes/shopScene'
 
 window.Phaser = Phaser;
 
@@ -22,7 +23,7 @@ const config = {
   plugins: {
     scene: [{ key: "SpinePlugin", plugin: window.SpinePlugin, mapping: "spine" }],
   },
-  scene: [PreloadScene, MainScene],
+  scene: [PreloadScene, MainScene, ShopScene],
   physics: {
     default: 'arcade',
     arcade: {
