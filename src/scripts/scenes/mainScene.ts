@@ -41,7 +41,7 @@ export default class MainScene extends Phaser.Scene {
   update() {
     this.fpsText.update()
     this.alcoholBar.update(-0.1)
-    this.player.playerMovement(this.cursors, this.player)
+    this.player.playerMovement(this.cursors)
     
 
     if (!this.gold.active) {
