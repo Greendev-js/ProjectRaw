@@ -27,7 +27,7 @@ export default class MainScene extends Phaser.Scene {
     this.alcoholBar = new AlcoholBar(this, 10, 70)
     this.shop = new Shop(this, 0, this.cameras.main.height)
     this.player = new Player(this, this.cameras.main.width / 2, this.cameras.main.height)
-    this.gold = new Material(this, this.cameras.main.width, 0, 'gold')
+    this.gold = new Material(this, this.cameras.main.width, 0, 'gold', this.player)
 
     this.cameras.main.backgroundColor.setTo(64, 4, 4)
     
@@ -38,7 +38,7 @@ export default class MainScene extends Phaser.Scene {
     this.shop.setCollision(this.game, this, this.player, this.shop)
 
     this.levelGenerator = new levelGenerator;
-    this.levelGenerator.generate(this, 32 * 10, 32 * 24, 32);
+    this.levelGenerator.generate(this, 32 * 10, 32 * 24, 32, this.player);
 
   }
 
@@ -52,7 +52,7 @@ export default class MainScene extends Phaser.Scene {
     if (!this.gold.active) {
       this.score.updateScore(10)
       this.alcoholBar.update(10)
-      this.gold = new Material(this, Math.random() * this.cameras.main.width, 0, 'gold')
+      this.gold = new Material(this, Math.random() * this.cameras.main.width, 0, 'gold', this.player)
       this.gold.setCollision(this, this.player, this.gold)
     }
   }

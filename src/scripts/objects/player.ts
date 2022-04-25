@@ -34,7 +34,7 @@ export default class Player extends Phaser.GameObjects.Container {
 		const body = this.body as Phaser.Physics.Arcade.Body
 		body.setOffset(width * -0.1, -height)
 		body.setSize(width, height)
-    body.setCollideWorldBounds(true)
+    // body.setCollideWorldBounds(true)
     body.setDrag(800, 100)
 	}
 
@@ -68,9 +68,10 @@ export default class Player extends Phaser.GameObjects.Container {
       this.spine.play('Idle1_', true)
     }
     
-    // if (cursors.space.isDown) {
-    //   body.setVelocityY(-350)
-    // }
+    if (cursors.space.isDown && body.checkCollision.down) {
+      console.log("DOWN")
+      body.setVelocityY(-350)
+    }
     // if (!cursors.space.isDown) {
     //   body.setVelocityY(250)
     // }
