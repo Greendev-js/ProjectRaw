@@ -14,7 +14,6 @@ export default class MainScene extends Phaser.Scene {
   shop: Shop
   player: Player
   gold: Material
-  cursors: Phaser.Types.Input.Keyboard.CursorKeys
   levelGenerator: levelGenerator
 
   constructor() {
@@ -32,7 +31,6 @@ export default class MainScene extends Phaser.Scene {
     this.cameras.main.backgroundColor.setTo(64, 4, 4)
     
     // inialise
-    this.cursors = this.input.keyboard.createCursorKeys();
     this.score.updateScore(0)
     this.gold.setCollision(this, this.player, this.gold)
     this.shop.setCollision(this.game, this, this.player, this.shop)
@@ -45,7 +43,7 @@ export default class MainScene extends Phaser.Scene {
   update() {
     this.fpsText.update()
     this.alcoholBar.update(-0.1)
-    this.player.playerMovement(this.cursors)
+    this.player.playerMovement()
     this.player.update()
     
 

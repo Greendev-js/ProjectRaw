@@ -29,6 +29,6 @@ export default class ShopScene extends Phaser.Scene {
   }
 
   update() {
-    this.player.playerMovement(this.cursors)
+    this.player.playerMovement()
   }
 }
