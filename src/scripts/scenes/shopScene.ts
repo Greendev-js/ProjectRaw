@@ -25,7 +25,7 @@ export default class ShopScene extends Phaser.Scene {
     
     // inialise
     this.cursors = this.input.keyboard.createCursorKeys();
-    this.goldmine.onCollision(this.game, this, this.player, this.goldmine)
+    this.goldmine.setCollision(this.game, this, this.player, this.goldmine)
   }
 
   update() {

@@ -11,7 +11,7 @@ export default class Shop extends Phaser.Physics.Arcade.Sprite {
         this.setScale(0.4)
     }
     
-    public onCollision(game: Phaser.Game, scene: Phaser.Scene, player: Player, shop: Shop) {
+    public setCollision(game: Phaser.Game, scene: Phaser.Scene, player: Player, shop: Shop) {
         scene.physics.add.collider(player, shop, function () {
             game.scene.switch('MainScene', 'ShopScene')
         });
