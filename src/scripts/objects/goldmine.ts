@@ -11,7 +11,7 @@ export default class GoldMine extends Phaser.Physics.Arcade.Sprite {
         this.setScale(0.4)
     }
     
-    public onCollision(game: Phaser.Game, scene: Phaser.Scene, player: Player, goldmine: GoldMine) {
+    public setCollision(game: Phaser.Game, scene: Phaser.Scene, player: Player, goldmine: GoldMine) {
         scene.physics.add.collider(player, goldmine, function () {
             game.scene.switch('ShopScene', 'MainScene')
         });
