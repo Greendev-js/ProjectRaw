@@ -1,8 +1,9 @@
 import Material from "./material";
+import Player from "./player";
 
 export default class levelGenerator {
     level: {type?: number, material?: Phaser.GameObjects.Sprite}[][];
-    generate(scene: Phaser.Scene, startX, startY, height) {
+    generate(scene: Phaser.Scene, startX, startY, height, player: Player) {
         this.level = [];
         for (let xi = 0; xi < 16; xi++) {
             this.level.push([]);
@@ -24,7 +25,7 @@ export default class levelGenerator {
                 }
                 
                 if (textureKey != 'none') {
-                    this.level[xi][yi].material = new Material(scene, startX + 96 * xi, startY + 96 * yi, textureKey)
+                    this.level[xi][yi].material = new Material(scene, startX + 96 * xi, startY + 96 * yi, textureKey, player)
                 }
             } 
         }
