@@ -1,19 +1,12 @@
 import Player from '../objects/player'
-import FpsText from '../objects/fpsText'
-import Material from '../objects/material'
-import Score from '../objects/score'
-import AlcoholBar from '../objects/alcoholBar'
 import Shop from '../objects/shop'
 import levelGenerator from '../objects/levelGenerator'
+import Material from '../objects/material'
 
 export default class MainScene extends Phaser.Scene {
-  fpsText: FpsText
   scoreUpdate: integer
-  score: Score
-  alcoholBar: AlcoholBar
   shop: Shop
   player: Player
-  gold: Material
   levelGenerator: levelGenerator
 
   constructor() {
@@ -21,37 +14,25 @@ export default class MainScene extends Phaser.Scene {
   }
 
   create() {
-    this.fpsText = new FpsText(this, 10, 10)
-    this.score = new Score(this, 10, 40)
-    this.alcoholBar = new AlcoholBar(this, 10, 70)
-    this.shop = new Shop(this, 0, this.cameras.main.height)
+    this.shop = new Shop(this, 0, 720)
     this.player = new Player(this, this.cameras.main.width / 2, this.cameras.main.height)
-    this.gold = new Material(this, this.cameras.main.width, 0, 'gold', this.player)
-
     this.cameras.main.backgroundColor.setTo(64, 4, 4)
     
-    // inialise
-    this.score.updateScore(0)
-    this.gold.setCollision(this, this.player, this.gold)
     this.shop.setCollision(this.game, this, this.player, this.shop)
+    // temporary wall and floor
+    for (let yi = 1; yi < 5; yi++) {
+      new Material(this, -256, 480 + (yi * 96), 'stone', this.player)
+    }
+    for (let xi = 1; xi < 6; xi++) {
+      new Material(this, -256 + (xi * 96), 864, 'stone', this.player)
+    }
 
     this.levelGenerator = new levelGenerator;
     this.levelGenerator.generate(this, 32 * 10, 32 * 24, 32, this.player);
-
   }
 
   update() {
-    this.fpsText.update()
-    this.alcoholBar.update(-0.1)
     this.player.playerMovement()
     this.player.update()
-    
-
-    if (!this.gold.active) {
-      this.score.updateScore(10)
-      this.alcoholBar.update(10)
-      this.gold = new Material(this, Math.random() * this.cameras.main.width, 0, 'gold', this.player)
-      this.gold.setCollision(this, this.player, this.gold)
-    }
   }
 }

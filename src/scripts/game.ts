@@ -1,8 +1,9 @@
 import * as Phaser from 'phaser'
-import MainScene from './scenes/mainScene'
 import PreloadScene from './scenes/preloadScene'
-import 'phaser/plugins/spine/dist/SpinePlugin'
+import MainScene from './scenes/mainScene'
 import ShopScene from './scenes/shopScene'
+import HUD from './scenes/hud'
+import 'phaser/plugins/spine/dist/SpinePlugin'
 
 window.Phaser = Phaser;
 
@@ -23,11 +24,11 @@ const config = {
   plugins: {
     scene: [{ key: "SpinePlugin", plugin: window.SpinePlugin, mapping: "spine" }],
   },
-  scene: [PreloadScene, MainScene, ShopScene],
+  scene: [PreloadScene, MainScene, ShopScene, HUD],
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true,
+      debug: false,
       gravity: { y: 400 }
     }
   },

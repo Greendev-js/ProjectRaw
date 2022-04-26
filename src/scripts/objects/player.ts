@@ -24,7 +24,7 @@ export default class Player extends Phaser.GameObjects.Container {
     
 		this.setPhysics(width, height)
     this.setScale(1)
-    
+    this.depth = 3
     this.add([this.spine as any])
     
     this.cameraPoint = scene.add.rectangle(x, y - height * -1, 64, 64, 0x000000, 0)
@@ -41,7 +41,7 @@ export default class Player extends Phaser.GameObjects.Container {
 		const body = this.body as Phaser.Physics.Arcade.Body
 		body.setOffset(width * -0.1, -height)
 		body.setSize(width, height)
-    body.setDrag(800, 100)
+    body.setDrag(800, 0)
 	}
 
   update() {
@@ -77,8 +77,7 @@ export default class Player extends Phaser.GameObjects.Container {
     
     // Kept outside the if...elseif otherwise player would not be able to move and jump at the same time
     if (this.keySPACE.isDown && body.touching.down) {
-      console.log("DOWN")
-      body.setVelocityY(-350)
+      body.setVelocityY(-400)
     }
   }
 }
